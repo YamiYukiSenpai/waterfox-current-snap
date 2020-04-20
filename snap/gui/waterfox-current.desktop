@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Waterfox Browser
-Icon=${SNAP}/meta/gui/waterfox-classic.png
+Icon=${SNAP}/meta/gui/waterfox.png
 Actions=NewWindow;NewPrivateWindow;ProfileManager;NewInstance;
-Exec=waterfox-classic %U
+Exec=waterfox-current %U
 Type=Application
 Categories=GTK;WebBrowser;
 Comment=Firefox-based browser
@@ -12,16 +12,16 @@ StartupNotify=true
 
 [Desktop Action NewWindow]
 Name=Open a New Window
-Exec=waterfox-classic --new-window %U
+Exec=waterfox-current --new-window %U
 
 [Desktop Action NewPrivateWindow]
 Name=Open a Private Window
-Exec=waterfox-classic --private-window %U
+Exec=waterfox-current --private-window %U
 
 [Desktop Action ProfileManager]
 Name=Open Profile Manager
-Exec=waterfox-classic --ProfileManager
+Exec=waterfox-current --ProfileManager
 
 [Desktop Action NewInstance]
 Name=Open a New Instance
-Exec=waterfox-classic --new-instance
+Exec=waterfox-current --new-instance
