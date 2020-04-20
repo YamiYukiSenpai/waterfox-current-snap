@@ -4,7 +4,8 @@
   Waterfox
 </h1>
 
-[![Snap Status](https://build.snapcraft.io/badge/YamiYukiSenpai/waterfox-current.svg)](https://build.snapcraft.io/user/YamiYukiSenpai/waterfox-current)
+[![Snap Status](https://build.snapcraft.io/badge/YamiYukiSenpai/waterfox-current-snap.svg)](https://build.snapcraft.io/user/YamiYukiSenpai/waterfox-current-snap)
+
 
 <p align="center"><b>This is the snap for Waterfox</b>, <i>“Browse the web YOUR way”</i>. It works on Ubuntu, Fedora, Debian, and other major Linux
 distributions.</p>
