@@ -18,9 +18,13 @@ architectures:
 
 parts:
   nodejs:
+    build-packages:
+      - curl
+      - software-properties-common
     override-pull: |
       curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
       apt update
+      apt upgrade -y
       apt install -y nodejs
     plugin: nil
     prime: [ -* ]
