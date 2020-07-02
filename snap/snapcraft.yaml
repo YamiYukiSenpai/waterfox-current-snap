@@ -143,7 +143,7 @@ plugs:
     interface: content
     target: $SNAP/share/icons
     default-provider: gtk-common-themes:icon-themes
-  gnome-3-28-1804:
+  gnome-3-34-1804:
     interface: content
     target: $SNAP/gnome-platform
   #browser-sandbox:
