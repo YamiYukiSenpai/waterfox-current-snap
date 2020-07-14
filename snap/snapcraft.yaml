@@ -168,7 +168,7 @@ apps:
     environment:
       DISABLE_WAYLAND: 1
       HOME: $SNAP_USER_COMMON
-      #GTK_USE_PORTAL: 1
+      GTK_USE_PORTALS: 1
     plugs:
       - avahi-observe
       - cups-control
