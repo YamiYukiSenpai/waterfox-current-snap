@@ -149,7 +149,7 @@ plugs:
     interface: content
     target: $SNAP/share/icons
     default-provider: gtk-common-themes:icon-themes
-  platform_snap:
+  gnome-3-34-1804:
     interface: content
     target: $SNAP/gnome-platform
     default-provider: gnome-3-34-1804
