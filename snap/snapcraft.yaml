@@ -75,16 +75,11 @@ parts:
       - GDK_PIXBUF_MODULE_FILE: /snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gdk-pixbuf-current/loaders.cache
     override-build: |
       pwd
-      echo $META
-      echo $SNAPCRAFT_PART_SRC
       cargo install --force cbindgen
       cargo install --force sccache
       export SCCACHE_IDLE_TIMEOUT=15000
       PATH="$META/root/.cargo/bin:$PATH" SHELL="/bin/bash" $SNAPCRAFT_PART_SRC/mach build
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_STAGE/
-      echo $SNAPCRAFT_PART_SRC
-      echo $SNAPCRAFT_PART_BUILD
-      echo $SNAPCRAFT_PART_INSTALL
       pwd
     organize:
       staging-files/usr: usr/
