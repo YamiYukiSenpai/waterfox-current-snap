@@ -66,6 +66,7 @@ parts:
       - python3-dev
       - nasm
       - llvm-dev
+      - watchman
     build-environment:
       - PATH: /snap/gnome-3-34-1804-sdk/current/usr/bin:$PATH
       - XDG_DATA_DIRS: /snap/gnome-3-34-1804-sdk/current/usr/share:/usr/share:$XDG_DATA_DIRS
