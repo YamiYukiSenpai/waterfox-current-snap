@@ -66,22 +66,19 @@ parts:
       - python3-dev
       - nasm
       - llvm-dev
-      - watchman
-    build-environment:
-      - PATH: /snap/gnome-3-34-1804-sdk/current/usr/bin:$PATH
-      - XDG_DATA_DIRS: /snap/gnome-3-34-1804-sdk/current/usr/share:/usr/share:$XDG_DATA_DIRS
-      - LD_LIBRARY_PATH: /snap/gnome-3-34-1804-sdk/current/lib/$SNAPCRAFT_ARCH_TRIPLET:/snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET:/snap/gnome-3-34-1804-sdk/current/usr/lib:/snap/gnome-3-34-1804-sdk/current/usr/lib/vala-current:$LD_LIBRARY_PATH
-      - PKG_CONFIG_PATH: /snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pkgconfig:/snap/gnome-3-34-1804-sdk/current/usr/lib/pkgconfig:/snap/gnome-3-34-1804-sdk/current/usr/share/pkgconfig:$PKG_CONFIG_PATH
-      - GETTEXTDATADIRS: /snap/gnome-3-34-1804-sdk/current/usr/share/gettext-current:$GETTEXTDATADIRS
-      - GDK_PIXBUF_MODULE_FILE: /snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gdk-pixbuf-current/loaders.cache
+    #build-environment:
+      #- PATH: /snap/gnome-3-34-1804-sdk/current/usr/bin:$PATH
+      #- XDG_DATA_DIRS: /snap/gnome-3-34-1804-sdk/current/usr/share:/usr/share:$XDG_DATA_DIRS
+      #- LD_LIBRARY_PATH: /snap/gnome-3-34-1804-sdk/current/lib/$SNAPCRAFT_ARCH_TRIPLET:/snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET:/snap/gnome-3-34-1804-sdk/current/usr/lib:/snap/gnome-3-34-1804-sdk/current/usr/lib/vala-current:$LD_LIBRARY_PATH
+      #- PKG_CONFIG_PATH: /snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pkgconfig:/snap/gnome-3-34-1804-sdk/current/usr/lib/pkgconfig:/snap/gnome-3-34-1804-sdk/current/usr/share/pkgconfig:$PKG_CONFIG_PATH
+      #- GETTEXTDATADIRS: /snap/gnome-3-34-1804-sdk/current/usr/share/gettext-current:$GETTEXTDATADIRS
+      #- GDK_PIXBUF_MODULE_FILE: /snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gdk-pixbuf-current/loaders.cache
     override-build: |
-      pwd
       cargo install --force cbindgen
       cargo install --force sccache
       export SCCACHE_IDLE_TIMEOUT=15000
       PATH="$META/root/.cargo/bin:$PATH" SHELL="/bin/bash" $SNAPCRAFT_PART_SRC/mach build
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_STAGE/
-      pwd
     organize:
       staging-files/usr: usr/
       staging-files/bin: bin/
@@ -120,7 +117,6 @@ parts:
       - xdg-desktop-portal-kde
       - nodejs
     override-stage: |
-      ls -l $SNAPCRAFT_PART_BUILD
       PATH="$META/root/.cargo/bin:$PATH" SHELL="/bin/bash" $SNAPCRAFT_PART_BUILD/mach install
       mkdir -p $SNAPCRAFT_STAGE/usr/lib/waterfox
       cp -r /usr/local/lib/waterfox $SNAPCRAFT_STAGE/usr/lib/
@@ -128,7 +124,6 @@ parts:
     override-prime: |
       snapcraftctl prime
       mkdir -p usr/lib/
-      #mkdir -p $SNAPCRAFT_PRIME/usr/lib/
       cp -r /usr/local/lib/waterfox $SNAPCRAFT_PRIME/usr/lib/
       
       
