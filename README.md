@@ -20,6 +20,8 @@ distributions.</p>
 ![waterfox-snap](screenshot.png?raw=true "waterfox-snap")
 -->
 
+![Screenshot](./screenshot/Waterfox-Screenshot_20201003_113311.png)
+
 <p align="center">Published for <img src="https://raw.githubusercontent.com/anythingcodes/slack-emoji-for-techies/gh-pages/emoji/tux.png" align="top" width="24" /> with 💝 by Snapcrafters</p>
 
 ## Install
@@ -49,7 +51,7 @@ upstream so Waterfox can authoritatively publish future releases.
   - [x] Update logos and references to `Waterfox` and `[waterfox-current]`
   - [ ] Create a snap that runs in `devmode`
   - [x] Register the snap in the store, **using the preferred upstream name**
-  - [ ] Add a screenshot to this `README.md`
+  - [x] Add a screenshot to this `README.md`
   - [ ] Publish the `devmode` snap in the Snap store edge channel
   - [ ] Add install instructions to this `README.md`
   - [ ] Update snap store metadata, icons and screenshots
