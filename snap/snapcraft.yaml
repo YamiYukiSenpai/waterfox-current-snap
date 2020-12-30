@@ -64,7 +64,7 @@ parts:
       - libpython3-dev
       - python-simplejson
       - python3-dev
-      - nasm
+      - nasm-mozilla
       - llvm-dev
     build-environment:
       - PATH: /snap/gnome-3-34-1804-sdk/current/usr/bin:$PATH
