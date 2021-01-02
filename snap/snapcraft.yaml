@@ -72,7 +72,7 @@ parts:
       - libpython3-dev
       - python-simplejson
       - python3-dev
-      - nasm
+      #- nasm
       - nasm-mozilla
       - llvm-dev
     build-environment:
