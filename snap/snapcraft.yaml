@@ -91,6 +91,7 @@ parts:
       cargo install --force sccache
       export SCCACHE_IDLE_TIMEOUT=15000
       PATH="$META/root/.cargo/bin:$PATH" SHELL="/bin/bash" $SNAPCRAFT_PART_SRC/mach build
+      PATH="$META/root/.cargo/bin:$PATH" SHELL="/bin/bash" $SNAPCRAFT_PART_SRC/mach build
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_STAGE/
     organize:
       staging-files/usr: usr/
