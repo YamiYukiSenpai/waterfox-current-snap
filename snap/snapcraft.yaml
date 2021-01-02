@@ -28,6 +28,14 @@ parts:
       apt install -y nodejs
     plugin: nil
     prime: [ -* ]
+  nasm:
+    after:
+      nodejs:
+    override-pull:
+      wget http://mirrors.kernel.org/ubuntu/pool/universe/n/nasm/nasm_2.14.02-1_amd64.deb
+      dpkg -i nasm_*.deb
+    plugin: nil
+    prime: [ -* ]
   waterfox:
     # See 'snapcraft plugins'
     plugin: dump
