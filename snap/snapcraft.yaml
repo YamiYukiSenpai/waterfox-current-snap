@@ -42,6 +42,7 @@ parts:
     source: https://github.com/MrAlex94/Waterfox/archive/G$SNAPCRAFT_PROJECT_VERSION.tar.gz
     after:
       - nodejs
+      - nasm
     build-packages:
       - build-essential
       - bash
