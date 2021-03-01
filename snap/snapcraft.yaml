@@ -1,6 +1,6 @@
 name: waterfox-current # you probably want to 'snapcraft register <name>'
 base: core18 # the base snap is the execution environment for this snap
-version: '2020.10' # just for humans, typically '1.2+git' or '1.3.2'
+version: '3.1.1' # just for humans, typically '1.2+git' or '1.3.2'
 summary: Browse the web YOUR way # 79 char long summary
 description: |
   Waterfox focuses on giving users choice. The browser is focused on power
@@ -28,12 +28,24 @@ parts:
       apt install -y nodejs
     plugin: nil
     prime: [ -* ]
+  nasm:
+    after:
+      - nodejs
+    build-packages:
+      - wget
+      - dpkg
+    override-pull: |
+      wget http://mirrors.kernel.org/ubuntu/pool/universe/n/nasm/nasm_2.14.02-1_amd64.deb
+      dpkg -i nasm_*.deb
+    plugin: nil
+    prime: [ -* ]
   waterfox:
     # See 'snapcraft plugins'
     plugin: dump
-    source: https://github.com/MrAlex94/Waterfox/archive/$SNAPCRAFT_PROJECT_VERSION-current.tar.gz
+    source: https://github.com/MrAlex94/Waterfox/archive/G$SNAPCRAFT_PROJECT_VERSION.tar.gz
     after:
       - nodejs
+      - nasm
     build-packages:
       - build-essential
       - bash
@@ -64,19 +76,21 @@ parts:
       - libpython3-dev
       - python-simplejson
       - python3-dev
-      - nasm
+      #- nasm
+      - nasm-mozilla
       - llvm-dev
-    build-environment:
-      - PATH: /snap/gnome-3-34-1804-sdk/current/usr/bin:$PATH
-      - XDG_DATA_DIRS: /snap/gnome-3-34-1804-sdk/current/usr/share:/usr/share:$XDG_DATA_DIRS
-      - LD_LIBRARY_PATH: /snap/gnome-3-34-1804-sdk/current/lib/$SNAPCRAFT_ARCH_TRIPLET:/snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET:/snap/gnome-3-34-1804-sdk/current/usr/lib:/snap/gnome-3-34-1804-sdk/current/usr/lib/vala-current:$LD_LIBRARY_PATH
-      - PKG_CONFIG_PATH: /snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pkgconfig:/snap/gnome-3-34-1804-sdk/current/usr/lib/pkgconfig:/snap/gnome-3-34-1804-sdk/current/usr/share/pkgconfig:$PKG_CONFIG_PATH
-      - GETTEXTDATADIRS: /snap/gnome-3-34-1804-sdk/current/usr/share/gettext-current:$GETTEXTDATADIRS
-      - GDK_PIXBUF_MODULE_FILE: /snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gdk-pixbuf-current/loaders.cache
+    #build-environment:
+      #- PATH: /snap/gnome-3-34-1804-sdk/current/usr/bin:$PATH
+      #- XDG_DATA_DIRS: /snap/gnome-3-34-1804-sdk/current/usr/share:/usr/share:$XDG_DATA_DIRS
+      #- LD_LIBRARY_PATH: /snap/gnome-3-34-1804-sdk/current/lib/$SNAPCRAFT_ARCH_TRIPLET:/snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET:/snap/gnome-3-34-1804-sdk/current/usr/lib:/snap/gnome-3-34-1804-sdk/current/usr/lib/vala-current:$LD_LIBRARY_PATH
+      #- PKG_CONFIG_PATH: /snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/pkgconfig:/snap/gnome-3-34-1804-sdk/current/usr/lib/pkgconfig:/snap/gnome-3-34-1804-sdk/current/usr/share/pkgconfig:$PKG_CONFIG_PATH
+      #- GETTEXTDATADIRS: /snap/gnome-3-34-1804-sdk/current/usr/share/gettext-current:$GETTEXTDATADIRS
+      #- GDK_PIXBUF_MODULE_FILE: /snap/gnome-3-34-1804-sdk/current/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/gdk-pixbuf-current/loaders.cache
     override-build: |
       cargo install --force cbindgen
       cargo install --force sccache
       export SCCACHE_IDLE_TIMEOUT=15000
+      PATH="$META/root/.cargo/bin:$PATH" SHELL="/bin/bash" $SNAPCRAFT_PART_SRC/mach build
       PATH="$META/root/.cargo/bin:$PATH" SHELL="/bin/bash" $SNAPCRAFT_PART_SRC/mach build
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_STAGE/
     organize:
@@ -156,7 +170,7 @@ slots:
 
 environment:
   SNAP_DESKTOP_RUNTIME: $SNAP/gnome-platform
-  GTK_USE_PORTALS: 1
+  GTK_USE_PORTAL: 1
     
 apps:
   waterfox-current:
