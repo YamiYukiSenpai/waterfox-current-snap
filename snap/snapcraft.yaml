@@ -77,7 +77,6 @@ parts:
       - python-simplejson
       - python3-dev
       - nasm
-      - nasm-mozilla
       - llvm-dev
     override-build: |
       cargo install --force cbindgen
