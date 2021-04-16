@@ -150,7 +150,7 @@ plugs:
   gnome-3-38-2004:
     interface: content
     target: $SNAP/gnome-platform
-    default-provider: gnome-3-34-2004
+    default-provider: gnome-3-38-2004
   #browser-sandbox:
     #interface: browser-support
     #allow-sandbox: true
