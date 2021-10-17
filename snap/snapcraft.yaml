@@ -28,24 +28,24 @@ parts:
       apt install -y nodejs
     plugin: nil
     prime: [ -* ]
-  nasm:
-    after:
-      - nodejs
-    build-packages:
-      - wget
-      - dpkg
-    override-pull: |
-      wget http://mirrors.kernel.org/ubuntu/pool/universe/n/nasm/nasm_2.14.02-1_amd64.deb
-      dpkg -i nasm_*.deb
-    plugin: nil
-    prime: [ -* ]
+  #nasm:
+  #  after:
+  #    - nodejs
+  #  build-packages:
+  #    - wget
+  #    - dpkg
+  #  override-pull: |
+  #    wget http://mirrors.kernel.org/ubuntu/pool/universe/n/nasm/nasm_2.14.02-1_amd64.deb
+  #    dpkg -i nasm_*.deb
+  #  plugin: nil
+  #  prime: [ -* ]
   waterfox:
     # See 'snapcraft plugins'
     plugin: dump
     source: https://github.com/WaterfoxCo/Waterfox/archive/G$SNAPCRAFT_PROJECT_VERSION.tar.gz
     after:
       - nodejs
-      - nasm
+    #  - nasm
     build-packages:
       - build-essential
       - bash
@@ -76,8 +76,7 @@ parts:
       - libpython3-dev
       - python-simplejson
       - python3-dev
-      #- nasm
-      - nasm-mozilla
+      - nasm
       - llvm-dev
     override-build: |
       cargo install --force cbindgen
