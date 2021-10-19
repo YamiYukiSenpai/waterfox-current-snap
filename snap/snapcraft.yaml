@@ -149,7 +149,7 @@ plugs:
   gnome-3-38-2004:
     interface: content
     target: $SNAP/gnome-platform
-    default-provider: gnome-3-38-2004
+    default-provider: gnome-3-34-1804
   #browser-sandbox:
     #interface: browser-support
     #allow-sandbox: true
@@ -167,7 +167,7 @@ environment:
 apps:
   waterfox-current:
     command: desktop-launch $SNAP/usr/lib/waterfox/waterfox
-    extensions: [gnome-3-38]
+    extensions: [gnome-3-34]
     command-chain:
       - snap/command-chain/snapcraft-runner
     environment:
