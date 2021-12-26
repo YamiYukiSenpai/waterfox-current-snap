@@ -1,6 +1,6 @@
 name: waterfox-current # you probably want to 'snapcraft register <name>'
-base: core18 # the base snap is the execution environment for this snap
-version: '4.0.1' # just for humans, typically '1.2+git' or '1.3.2'
+base: core20 # the base snap is the execution environment for this snap
+version: '4.0.5.1' # just for humans, typically '1.2+git' or '1.3.2'
 summary: Browse the web YOUR way # 79 char long summary
 description: |
   Waterfox focuses on giving users choice. The browser is focused on power
@@ -17,35 +17,10 @@ architectures:
     run-on: amd64
 
 parts:
-  nodejs:
-    build-packages:
-      - curl
-      - software-properties-common
-    override-pull: |
-      curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-      apt update
-      apt upgrade -y
-      apt install -y nodejs
-    plugin: nil
-    prime: [ -* ]
-  nasm:
-    after:
-      - nodejs
-    build-packages:
-      - wget
-      - dpkg
-    override-pull: |
-      wget http://mirrors.kernel.org/ubuntu/pool/universe/n/nasm/nasm_2.14.02-1_amd64.deb
-      dpkg -i nasm_*.deb
-    plugin: nil
-    prime: [ -* ]
   waterfox:
     # See 'snapcraft plugins'
     plugin: dump
     source: https://github.com/WaterfoxCo/Waterfox/archive/G$SNAPCRAFT_PROJECT_VERSION.tar.gz
-    after:
-      - nodejs
-      - nasm
     build-packages:
       - build-essential
       - bash
@@ -70,14 +45,13 @@ parts:
       - zip
       - libxt-dev
       - libnotify-dev
-      - nodejs
-      - libpython2.7-dev
-      - python2.7-dev
+      - nodejs-mozilla
+      #- libpython2.7-dev
+      #- python2.7-dev
       - libpython3-dev
       - python-simplejson
       - python3-dev
-      #- nasm
-      - nasm-mozilla
+      - nasm
       - llvm-dev
     override-build: |
       cargo install --force cbindgen
@@ -149,7 +123,7 @@ plugs:
   gnome-3-38-2004:
     interface: content
     target: $SNAP/gnome-platform
-    default-provider: gnome-3-34-1804
+    default-provider: gnome-3-38-2004
   #browser-sandbox:
     #interface: browser-support
     #allow-sandbox: true
@@ -167,11 +141,12 @@ environment:
 apps:
   waterfox-current:
     command: desktop-launch $SNAP/usr/lib/waterfox/waterfox
-    extensions: [gnome-3-34]
+    extensions: [gnome-3-38]
     command-chain:
       - snap/command-chain/snapcraft-runner
     environment:
-      DISABLE_WAYLAND: 1
+      #DISABLE_WAYLAND: 1
+      MOZ_ENABLE_WAYLAND: 1
       HOME: $SNAP_USER_COMMON
       GTK_USE_PORTAL: 1
     plugs:
@@ -195,6 +170,7 @@ apps:
       - gtk-3-themes
       - sound-themes
       - icon-themes
+      - wayland
     slots:
       - dbus-daemon
 
