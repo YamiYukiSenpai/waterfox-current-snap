@@ -57,7 +57,7 @@ parts:
       cargo install --force cbindgen
       cargo install --force sccache
       export SCCACHE_IDLE_TIMEOUT=15000
-      PATH="$META/root/.cargo/bin:$PATH" SHELL="/bin/bash" MACH_USE_SYSTEM_PYTHON=1 $SNAPCRAFT_PART_SRC/mach build
+      PATH="/root/.cargo/bin:$PATH" SHELL="/bin/bash" MACH_USE_SYSTEM_PYTHON=1 $SNAPCRAFT_PART_SRC/mach build
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_STAGE/
     organize:
       staging-files/usr: usr/
@@ -97,7 +97,7 @@ parts:
       - xdg-desktop-portal-kde
       - nodejs
     override-stage: |
-      PATH="$META/root/.cargo/bin:$PATH" SHELL="/bin/bash" $SNAPCRAFT_PART_BUILD/mach install
+      PATH="/root/.cargo/bin:$PATH" SHELL="/bin/bash" $SNAPCRAFT_PART_BUILD/mach install
       mkdir -p $SNAPCRAFT_STAGE/usr/lib/waterfox
       cp -r /usr/local/lib/waterfox $SNAPCRAFT_STAGE/usr/lib/
       snapcraftctl stage
@@ -105,7 +105,6 @@ parts:
       snapcraftctl prime
       mkdir -p usr/lib/
       cp -r /usr/local/lib/waterfox $SNAPCRAFT_PRIME/usr/lib/
-      
       
 plugs:
   gtk-3-themes:
