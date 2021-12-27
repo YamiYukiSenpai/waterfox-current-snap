@@ -27,6 +27,9 @@ parts:
       bash rustup-init.sh -y
       source $HOME/.cargo/env
       rustup install 1.55.0
+      cargo install --force cbindgen
+      cargo install --force sccache
+      export SCCACHE_IDLE_TIMEOUT=15000
     prime: [ -* ]
   waterfox:
     # See 'snapcraft plugins'
@@ -67,9 +70,6 @@ parts:
       - nasm
       - llvm-dev
     override-build: |
-      cargo install --force cbindgen
-      cargo install --force sccache
-      export SCCACHE_IDLE_TIMEOUT=15000
       PATH="/root/.cargo/bin:$PATH" SHELL="/bin/bash" MACH_USE_SYSTEM_PYTHON=1 $SNAPCRAFT_PART_SRC/mach build
       cp -r $SNAPCRAFT_PART_SRC $SNAPCRAFT_STAGE/
     organize:
