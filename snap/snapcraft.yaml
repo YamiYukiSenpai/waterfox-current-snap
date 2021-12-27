@@ -25,6 +25,7 @@ parts:
     override-pull: |
       curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | tee rustup-init.sh
       bash rustup-init.sh -y
+      source $HOME/.cargo/env
       rustup install 1.55.0
     prime: [ -* ]
   waterfox:
