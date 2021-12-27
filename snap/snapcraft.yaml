@@ -30,7 +30,7 @@ parts:
     plugin: dump
     source: https://github.com/WaterfoxCo/Waterfox/archive/G$SNAPCRAFT_PROJECT_VERSION.tar.gz
     after:
-      - rustup
+      - rust
     build-packages:
       - build-essential
       - bash
