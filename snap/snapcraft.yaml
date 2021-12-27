@@ -20,9 +20,10 @@ parts:
   rust:
     plugin: nil
     build-packages:
+      - bash
       - curl
     override-pull: |
-      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash
       rustup install 1.55.0
     prime: [ -* ]
   waterfox:
