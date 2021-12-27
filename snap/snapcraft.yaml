@@ -17,17 +17,27 @@ architectures:
     run-on: amd64
 
 parts:
+  rust:
+    plugin: nil
+    build-packages:
+      - curl
+    override-pull: |
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+      rustup install 1.55.0
+    prime: [ -* ]
   waterfox:
     # See 'snapcraft plugins'
     plugin: dump
     source: https://github.com/WaterfoxCo/Waterfox/archive/G$SNAPCRAFT_PROJECT_VERSION.tar.gz
+    after:
+      - rustup
     build-packages:
       - build-essential
       - bash
       - clang
       - libssl-dev
       - autoconf2.13
-      - rustc
+      #- rustc
       - cargo
       - libgtk2.0-dev
       - libgtk-3-dev
