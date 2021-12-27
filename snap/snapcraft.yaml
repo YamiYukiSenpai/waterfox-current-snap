@@ -39,7 +39,7 @@ parts:
       - libssl-dev
       - autoconf2.13
       #- rustc
-      - cargo
+      #- cargo
       - libgtk2.0-dev
       - libgtk-3-dev
       - libgconf2-dev
